@@ -8,7 +8,7 @@ import requests
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from langchain.tools import BaseTool
-from langchain import OpenAI
+from langchain.llms import OpenAI
 from langchain.agents import initialize_agent, AgentType
 
 #---- Part I 初始化图像字幕生成模型
@@ -43,7 +43,9 @@ class ImageCapTool(BaseTool):
 
 #---- PartIII 初始化并运行LangChain智能体
 # 设置OpenAI的API密钥并初始化大语言模型（OpenAI的Text模型）
-os.environ["OPENAI_API_KEY"] = '你的OpenAI API Key'
+from dotenv import load_dotenv
+load_dotenv()
+openai_api_key = os.getenv("OPENAI_API_KEY")
 llm = OpenAI(temperature=0.2)
 
 # 使用工具初始化智能体并运行
