@@ -1,9 +1,8 @@
-'''欢迎来到LangChain实战课
-https://time.geekbang.org/column/intro/100617601
-作者 黄佳'''
-
 import os
-os.environ["OPENAI_API_KEY"] = '你的OpenAI API Key'
+from dotenv import load_dotenv
+load_dotenv()
+open_api_base = os.getenv("OPENAI_API_BASE")
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # 1.Load 导入Document Loaders
 from langchain.document_loaders import PyPDFLoader
