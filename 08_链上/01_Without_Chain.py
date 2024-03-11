@@ -2,9 +2,8 @@
 https://time.geekbang.org/column/intro/100617601
 作者 黄佳'''
 # 设置OpenAI API密钥
-import os
-os.environ["OPENAI_API_KEY"] = 'Your Key'
-
+from dotenv import load_dotenv
+load_dotenv()
 #----第一步 创建提示
 # 导入LangChain中的提示模板
 from langchain import PromptTemplate
@@ -21,7 +20,8 @@ print(prompt)
 # 导入LangChain中的OpenAI模型接口
 from langchain import OpenAI
 # 创建模型实例
-model = OpenAI(temperature=0)
+from load_glm import llm
+model = llm
 # 传入提示，调用模型，返回结果
 result = model(prompt)
 print(result)

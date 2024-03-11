@@ -5,8 +5,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # 设置OpenAI API密钥
-import os
-os.environ["OPENAI_API_KEY"] = 'Your Key'
+from dotenv import load_dotenv
+load_dotenv()
 
 # 构建两个场景的模板
 flower_care_template = """
@@ -36,8 +36,7 @@ prompt_infos = [
 ]
 
 # 初始化语言模型
-from langchain.llms import OpenAI
-llm = OpenAI()
+from load_glm import llm
 
 # 构建目标链
 from langchain.chains.llm import LLMChain
@@ -99,9 +98,11 @@ chain = MultiPromptChain(
     verbose=True
 )
 
-# 测试1
-print(chain.run("如何为玫瑰浇水？"))
-# 测试2              
-print(chain.run("如何为婚礼场地装饰花朵？"))
-# 测试3         
-print(chain.run("如何区分阿豆和罗豆？"))
+
+print(chain.run("如何考入哈佛大学？"))
+# # 测试1
+# print(chain.run("如何为玫瑰浇水？"))
+# # 测试2
+# print(chain.run("如何为婚礼场地装饰花朵？"))
+# # 测试3
+# print(chain.run("如何区分阿豆和罗豆？"))
